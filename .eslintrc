@@ -1,0 +1,21 @@
+{
+	"extends": ["@rocket.chat/eslint-config"],
+	"parser": "babel-eslint",
+	"globals": {
+		"__meteor_bootstrap__"        : false,
+		"__meteor_runtime_config__"   : false,
+		"Apps"                        : false,
+		"Assets"                      : false,
+		"chrome"                      : false,
+		"DynamicCss"                  : false,
+		"handleError"                 : false,
+		"getAvatarSuggestionForUser"  : false,
+		"JitsiMeetExternalAPI"        : false,
+		"jscolor"                     : false,
+		"msgStream"                   : false,
+		"openRoom"                    : false,
+		"RocketChat"                  : true,
+		"roomExit"                    : true,
+		"Settings"                    : false
+	}
+}
