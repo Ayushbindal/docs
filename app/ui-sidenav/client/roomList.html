@@ -1,0 +1,20 @@
+<template name="roomList">
+	{{#if isLivechat}}
+		{{> livechat . }}
+	{{else}}
+		{{#with rooms}}
+			{{#if shouldAppear .. .}}
+					<h2 class="rooms-list__type" tabindex="0" id="content">
+						<span class="rooms-list__type-text">{{_ ../label}}</span>
+					</h2>
+					<ul class="rooms-list__list {{ roomType ..}}">
+						{{#each room in this}}
+							{{> chatRoomItem room }}
+						{{else}}
+							<p class="rooms-list__empty-room">{{_ noSubscriptionText }}</p>
+						{{/each}}
+					</ul>
+				{{/if}}
+		{{/with}}
+	{{/if}}
+</template>
