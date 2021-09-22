@@ -1,0 +1,30 @@
+import { BaseRaw } from './BaseRaw';
+
+import * as Models from './index';
+
+export class RolesRaw extends BaseRaw {
+	async getLevel(ids) {
+		const roles = await this.find({ _id: { $in: ids } }, { projection: { level: 1 } }).toArray();
+		return roles.reduce((currentLevel, { level }) => (currentLevel > level ? currentLevel : level), 0); // 0 === MINIMUN LEVEL
+	}
+
+	async isUserInRoles(userId, roles, scope) {
+		roles = [].concat(roles);
+
+		for (let i = 0, total = roles.length; i < total; i++) {
+			const roleName = roles[i];
+
+			// eslint-disable-next-line no-await-in-loop
+			const role = await this.findOne({ _id: roleName });
+			const roleScope = (role && role.scope) || 'Users';
+			const model = Models[roleScope];
+
+			// eslint-disable-next-line no-await-in-loop
+			const permitted = await (model && model.isUserInRole && model.isUserInRole(userId, roleName, scope));
+			if (permitted) {
+				return true;
+			}
+		}
+		return false;
+	}
+}
