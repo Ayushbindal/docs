@@ -1,0 +1,11 @@
+{
+	"extends": ["@rocket.chat/eslint-config"],
+	"parser": "babel-eslint",
+	"globals": {
+		"__meteor_bootstrap__"        : false,
+		"__meteor_runtime_config__"   : false,
+		"Assets"                      : false,
+		"chrome"                      : false,
+		"jscolor"                     : false
+	}
+}
