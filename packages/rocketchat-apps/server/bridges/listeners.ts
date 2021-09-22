@@ -1,0 +1,45 @@
+import { IListenerBridge } from '@rocket.chat/apps-engine/server/bridges';
+
+import { AppServerOrchestrator } from '../orchestrator';
+
+export class AppListenerBridge implements IListenerBridge {
+	private orch: AppServerOrchestrator;
+
+	constructor(orch) {
+		this.orch = orch;
+	}
+
+	async messageEvent(inte, message) {
+		const msg = this.orch.getConverters().get('messages').convertMessage(message);
+		const result = await this.orch.getManager().getListenerManager().executeListener(inte, msg);
+
+		if (typeof result === 'boolean') {
+			return result;
+		} else {
+			return this.orch.getConverters().get('messages').convertAppMessage(result);
+		}
+		// try {
+
+		// } catch (e) {
+		// 	console.log(`${ e.name }: ${ e.message }`);
+		// 	console.log(e.stack);
+		// }
+	}
+
+	async roomEvent(inte, room) {
+		const rm = this.orch.getConverters().get('rooms').convertRoom(room);
+		const result = await this.orch.getManager().getListenerManager().executeListener(inte, rm);
+
+		if (typeof result === 'boolean') {
+			return result;
+		} else {
+			return this.orch.getConverters().get('rooms').convertAppRoom(result);
+		}
+		// try {
+
+		// } catch (e) {
+		// 	console.log(`${ e.name }: ${ e.message }`);
+		// 	console.log(e.stack);
+		// }
+	}
+}
