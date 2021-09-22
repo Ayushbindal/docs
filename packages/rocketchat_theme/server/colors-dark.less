@@ -1,0 +1,955 @@
+/** ----------------------------------------------------------------------------
+ * Derivative colours (fixed variants of inherited variables)
+ */
+@darkmode-default-action-color: darken(@secondary-background-color, 15%);
+@darkmode-default-action-contrast: contrast(@darkmode-default-action-color, #444444);
+@darkmode-primary-background-contrast: contrast(@darkmode-primary-background-color, #444444);
+@darkmode-primary-action-contrast: contrast(@darkmode-primary-action-color, #444444);
+@darkmode-secondary-background-contrast: contrast(@darkmode-secondary-background-color, #444444);
+@darkmode-secondary-action-contrast: contrast(@darkmode-secondary-action-color, #444444);
+@darkmode-selection-background: darken(@darkmode-selection-color, 30%);
+@darkmode-success-background: darken(@darkmode-success-color, 45%);
+@darkmode-success-border: lighten(@darkmode-success-color, 30%);
+@darkmode-error-background: darken(@darkmode-error-color, 45%);
+@darkmode-error-border: lighten(@darkmode-error-color, 30%);
+@darkmode-error-contrast: contrast(@darkmode-error-color);
+@darkmode-pending-background: darken(@darkmode-pending-color, 45%);
+@darkmode-pending-border: lighten(@darkmode-pending-color, 30%);
+
+#rocket-chat.darkmode {
+	// Workaround: primary font color is setted at body element
+	color: @darkmode-primary-font-color;
+
+	/** ----------------------------------------------------------------------------
+	 * Classes for variables
+	 */
+
+	// Major colors
+
+	.content-background-color {
+		background-color: @darkmode-content-background-color;
+	}
+
+	.color-content-background-color {
+		color: @darkmode-content-background-color;
+	}
+
+	.primary-background-color {
+		background-color: @darkmode-primary-background-color;
+	}
+
+	.color-primary-font-color {
+		color: @darkmode-primary-font-color;
+	}
+
+	&.color-primary-font-color {
+		color: @darkmode-primary-font-color;
+	}
+
+	.color-primary-action-color {
+		color: @darkmode-primary-action-color;
+	}
+
+	.background-primary-action-color {
+		background-color: @darkmode-primary-action-color;
+	}
+
+	.secondary-background-color {
+		background-color: @darkmode-secondary-background-color;
+	}
+
+	.border-secondary-background-color {
+		border-color: @darkmode-secondary-background-color;
+	}
+
+	.secondary-font-color {
+		color: @darkmode-secondary-font-color;
+	}
+
+	.border-component-color {
+		border-color: @darkmode-component-color;
+	}
+
+	.background-component-color {
+		background-color: @darkmode-component-color;
+	}
+
+	.color-component-color {
+		color: @darkmode-component-color;
+	}
+
+	.success-color {
+		color: @darkmode-success-color;
+	}
+
+	.pending-color {
+		color: @darkmode-pending-color;
+	}
+
+	.pending-background {
+		background-color: @darkmode-pending-background;
+	}
+
+	.pending-border {
+		border-color: @darkmode-pending-border;
+	}
+
+	.error-color {
+		color: @darkmode-error-color;
+	}
+
+	.background-error-color {
+		background-color: @darkmode-error-color;
+	}
+
+	.color-info-font-color {
+		color: @darkmode-info-font-color;
+	}
+
+	.background-info-font-color {
+		background-color: @darkmode-info-font-color;
+	}
+
+	.background-attention-color {
+		background-color: @darkmode-attention-color;
+	}
+
+	// Minor Colors
+
+	.tertiary-background-color {
+		background-color: @darkmode-tertiary-background-color;
+	}
+
+	.border-tertiary-background-color {
+		border-color: @darkmode-tertiary-background-color;
+	}
+
+	// Derivative Colors
+
+	.color-tertiary-font-color {
+		color: @darkmode-tertiary-font-color;
+	}
+
+	.error-background {
+		background-color: @darkmode-error-background;
+	}
+
+	.error-border {
+		border-color: @darkmode-error-border;
+	}
+
+	.color-error-contrast {
+		color: @darkmode-error-contrast;
+	}
+
+	/** ----------------------------------------------------------------------------
+	 * Override hardcoded components
+	 */
+
+	.contextual-bar {
+		background-color: #161616;
+	}
+
+	.rc-user-info-container {
+		background-color: #161616;
+	}
+
+	.rc-user-info-details {
+		background-color: #101010;
+
+		.rc-user-info-details__info {
+			color: @darkmode-primary-font-color;
+		}
+	}
+
+	.rc-button {
+		color: rgba(255, 255, 255, 0.9);
+		border-color: rgba(255, 255, 255, 0.9);
+	}
+
+	.attachments__item {
+		.attachments__name {
+			color: #dddddd;
+		}
+
+		&:hover {
+			background-color: #222222;
+		}
+	}
+
+	.rc-switch-double {
+		color: @darkmode-primary-font-color;
+	}
+
+	.rc-switch--blue .rc-switch__button {
+		background-color: #111111;
+	}
+
+	.rc-switch--blue .rc-switch__input:checked + .rc-switch__button {
+		background-color: var(--button-primary-background);
+	}
+
+	.rc-switch__text {
+		color: @darkmode-primary-font-color;
+	}
+
+	.rc-old blockquote::before {
+		background-color: #444444;
+	}
+
+	.message-actions {
+		color: #888888;
+	}
+
+	.reply-preview {
+		background-color: #111111;
+	}
+
+	.toolbar .rc-input__element {
+		background-color: #111111;
+	}
+
+	.rc-table {
+		color: @darkmode-primary-font-color;
+	}
+
+	.rc-table-body .rc-table-tr:hover {
+		background-color: #111111;
+	}
+
+	.code-colors {
+		border-color: #555555;
+		background-color: #999999;
+	}
+
+	.rc-form-legend {
+		color: #aaaaaa;
+	}
+
+	.sidebar-light .sidebar-item {
+		color: #cccccc;
+	}
+
+	.rc-form-label {
+		color: #cccccc;
+	}
+
+	.admin-table-row {
+		background-color: transparent;
+	}
+
+	.admin-table-row:nth-of-type(2n) {
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+
+	.rc-old .page-settings .section {
+		border-color: #444444;
+		background-color: #161616;
+	}
+
+	.flex-tab-bar .tab-button-icon {
+		color: #aaaaaa;
+		fill: #aaaaaa;
+	}
+
+	.admin-integrations-new-panel .admin-integrations-new-item {
+		border-color: #333333;
+
+		&:hover {
+			background-color: #222222;
+		}
+	}
+
+	.message.new-day.first-unread::after {
+		border-color: @darkmode-error-color;
+	}
+
+	.first-unread .body::after {
+		background-color: @darkmode-content-background-color;
+	}
+
+	.messages-box .new-message {
+		color: #ffffff !important;
+	}
+
+	.message .reactions > li {
+		border-color: #444444;
+		background-color: #333333;
+
+		&.selected {
+			color: #ffffff;
+			border-color: #ffffff;
+			background-color: @darkmode-primary-action-color;
+		}
+	}
+
+	& ~ .rc-popover,
+	& ~ .rc-popover__content {
+		.rc-input__wrapper {
+			color: #aaaaaa;
+		}
+
+		.rc-input__element {
+			color: #aaaaaa;
+			border-color: #aaaaaa;
+		}
+	}
+
+	& ~ .emoji-picker .filter-item {
+		border-color: #444444;
+
+		&:hover {
+			border-color: #666666;
+		}
+
+		&.active {
+			border-color: @darkmode-primary-action-color;
+		}
+	}
+
+	& ~ .rc-modal-wrapper {
+		background-color: rgba(12, 12, 15, 0.8);
+
+		.rc-modal {
+			color: #aaaaaa;
+			background-color: #090909;
+
+			.rc-modal__footer {
+				color: #cccccc;
+				background-color: #0c0c0c;
+			}
+
+			.rc-button {
+				color: #cccccc;
+			}
+
+			.rc-input__element {
+				color: #aaaaaa;
+			}
+		}
+	}
+
+	& ~ .connection-status .alert-warning {
+		color: #ffb128;
+		background-color: #48391f;
+	}
+
+	/** ----------------------------------------------------------------------------
+	 * Special components
+	 */
+
+	.filter-item {
+		&:hover {
+			border-color: @darkmode-info-font-color;
+		}
+
+		&.active {
+			border-color: @darkmode-primary-background-color;
+		}
+	}
+
+	/** ----------------------------------------------------------------------------
+	 * Document components
+	 */
+
+	.page-container {
+		tr:hover td {
+			background-color: @darkmode-content-background-color;
+		}
+	}
+
+	.burger i {
+		background-color: @darkmode-primary-font-color;
+	}
+
+	/** ----------------------------------------------------------------------------
+	 * Forms
+	 */
+
+	input,
+	select,
+	textarea {
+		color: @darkmode-primary-font-color;
+		border-color: mix(contrast(@darkmode-content-background-color), @darkmode-content-background-color, 10%);
+
+		&::placeholder {
+			color: mix(@darkmode-primary-font-color, @darkmode-content-background-color, 75%);
+		}
+
+		&[disabled] {
+			background-color: mix(contrast(@darkmode-content-background-color), @darkmode-content-background-color, 10%);
+		}
+	}
+
+	.disabled label,
+	[disabled] label {
+		color: mix(@darkmode-primary-font-color, @darkmode-content-background-color, 75%);
+	}
+
+	.-autocomplete-container {
+		background-color: mix(contrast(@darkmode-content-background-color), @darkmode-content-background-color, 10%);
+	}
+
+	.-autocomplete-item.selected {
+		background-color: mix(contrast(@darkmode-content-background-color), @darkmode-content-background-color, 20%);
+	}
+
+	.rc-old input[type="button"],
+	.rc-old input[type="submit"] {
+		color: @darkmode-primary-font-color;
+		border-color: mix(contrast(@darkmode-content-background-color), @darkmode-content-background-color, 10%);
+		background: mix(contrast(@darkmode-content-background-color), @darkmode-content-background-color, 10%);
+	}
+
+	.toolbar-search__input {
+		&:focus {
+			border-color: fade(@darkmode-primary-background-contrast, 50%);
+		}
+	}
+
+	.toolbar-search__buttons i:hover {
+		color: fade(@darkmode-primary-background-contrast, 50%);
+	}
+
+	.input-line {
+		&.setting-changed > label {
+			color: @darkmode-selection-color;
+		}
+	}
+
+	input:-webkit-autofill {
+		color: @darkmode-primary-font-color !important;
+	}
+
+	.input {
+		&.radio {
+			label {
+				&::before {
+					border-color: lighten(@darkmode-secondary-background-contrast, 30%);
+					background-color: @darkmode-content-background-color;
+				}
+
+				&::after {
+					background-color: @darkmode-secondary-background-contrast;
+				}
+			}
+		}
+
+		&.checkbox.toggle {
+			input:checked + label::before {
+				background-color: @darkmode-secondary-background-contrast;
+			}
+
+			input:disabled + label::before {
+				background-color: lighten(@darkmode-secondary-background-contrast, 50%) !important;
+			}
+
+			label {
+				&::before {
+					background-color: lighten(@darkmode-secondary-background-contrast, 30%);
+				}
+
+				&::after {
+					background-color: @darkmode-content-background-color;
+				}
+
+				&:hover {
+					&::before {
+						background-color: lighten(@darkmode-secondary-background-contrast, 20%);
+					}
+				}
+			}
+		}
+	}
+
+	/** ----------------------------------------------------------------------------
+	 * Misc typography variants
+	 */
+
+	.message,
+	.flex-tab {
+		a i,
+		a[class^="icon-"] {
+			color: @darkmode-primary-font-color;
+
+			&:hover {
+				color: darken(@darkmode-primary-font-color, 10%);
+			}
+		}
+	}
+
+	.error {
+		border-color: @darkmode-error-color;
+	}
+
+	/** ----------------------------------------------------------------------------
+	 * Admin and settings styles
+	 */
+
+	.page-list,
+	.page-settings {
+		a:not(.rc-button) {
+			color: @darkmode-primary-font-color;
+
+			&:hover {
+				color: @darkmode-primary-action-color;
+			}
+		}
+	}
+
+	.new-logs {
+		background: @darkmode-primary-action-contrast;
+	}
+
+	.avatar-suggestion-item {
+		.question-mark::before {
+			color: @darkmode-secondary-font-color;
+		}
+	}
+
+	/** ----------------------------------------------------------------------------
+	 * Asides (external to main application views)
+	 */
+
+	.full-page,
+	.page-loading {
+		a {
+			color: @darkmode-tertiary-font-color;
+		}
+
+		a:hover {
+			color: @darkmode-primary-background-contrast;
+		}
+	}
+
+	#login-card {
+		.input-text {
+			input:-webkit-autofill {
+				box-shadow: 0 0 0 20px @darkmode-content-background-color inset;
+			}
+		}
+	}
+
+	/** ----------------------------------------------------------------------------
+	 * Room components
+	 */
+
+	.toggle-favorite {
+		color: @darkmode-component-color;
+	}
+
+	.upload-progress-progress {
+		background-color: @darkmode-success-background;
+	}
+
+	.messages-container {
+		.edit-room-title {
+			color: @darkmode-secondary-font-color;
+
+			&:hover {
+				color: @darkmode-primary-font-color;
+			}
+		}
+
+		.footer {
+			background: @darkmode-content-background-color;
+		}
+	}
+
+	.message-form {
+		.message-buttons {
+			.buttonColors(lighten(@darkmode-primary-font-color, 25%), @darkmode-secondary-background-color);
+
+			&:hover {
+				background-color: mix(@darkmode-secondary-background-color, contrast(@darkmode-primary-font-color), 20%);
+			}
+		}
+
+		.message-form-text {
+			&.editing {
+				background-color: lighten(@darkmode-pending-color, 40%);
+			}
+		}
+	}
+
+	.message.editing {
+		background-color: #644b1f;
+	}
+
+	.rc-old {
+		& .popup-item {
+			&.selected {
+				color: @darkmode-primary-action-contrast;
+				background-color: @darkmode-primary-action-color;
+			}
+		}
+	}
+
+	.messages-box {
+		&.selectable .selected {
+			background-color: @darkmode-selection-background;
+		}
+	}
+
+	/** ----------------------------------------------------------------------------
+	 * Message content
+	 */
+
+	.message {
+		&.new-day::before {
+			background-color: @darkmode-content-background-color;
+		}
+
+		&.new-day::after {
+			border-color: #282828;
+		}
+
+		.message-dropdown,
+		.options-menu {
+			color: lighten(@darkmode-primary-font-color, 13%);
+
+			ul li:hover {
+				background-color: @darkmode-tertiary-background-color;
+			}
+		}
+
+		.is-bot,
+		.role-tag {
+			color: contrast(@darkmode-info-font-color);
+		}
+
+		a {
+			color: @darkmode-link-font-color;
+
+			&:hover {
+				color: darken(@darkmode-link-font-color, 10%);
+			}
+		}
+
+		.mention-link {
+			&.mention-link-me {
+				color: @darkmode-primary-action-contrast;
+			}
+
+			&.mention-link-all {
+				color: @darkmode-primary-action-contrast;
+			}
+		}
+
+		.highlight-text {
+			background-color: @darkmode-selection-background;
+		}
+	}
+
+	/** ----------------------------------------------------------------------------
+	 * Side nav
+	 */
+	.side-nav {
+		.arrow::before,
+		.arrow::after {
+			background-color: @darkmode-tertiary-font-color;
+		}
+
+		.has-alert .name {
+			color: @darkmode-primary-background-contrast;
+		}
+
+		.unread {
+			color: @darkmode-success-color;
+			border: 1px solid @darkmode-success-color;
+		}
+
+		.unread.unread-mention {
+			color: contrast(@darkmode-success-color, #000000, #ffffff, 50%);
+			background-color: @darkmode-success-color;
+		}
+
+		.button {
+			.buttonColors(@darkmode-tertiary-font-color, mix(@darkmode-primary-action-color, @darkmode-primary-background-color));
+		}
+
+		.options button {
+			.buttonColors(@darkmode-tertiary-font-color, @darkmode-primary-background-color);
+		}
+	}
+
+	.sidebar-item__last-message {
+		a:not(.mention-link) {
+			color: @darkmode-link-font-color;
+
+			&:hover {
+				color: darken(@darkmode-link-font-color, 10%);
+			}
+		}
+	}
+
+	.message-popup.search-results-list {
+		background-color: lighten(@darkmode-primary-background-color, 2.5%);
+	}
+
+	.rc-member-list__counter {
+		color: #aaaaaa;
+	}
+
+	.rc-member-list__user:hover {
+		background-color: #222222;
+	}
+
+	/** ----------------------------------------------------------------------------
+	 * Flex tabs / admin fly-out panels
+	 */
+	.flex-tab {
+		.message {
+			&.new-day::before {
+				background-color: #161616;
+			}
+		}
+
+		.channel-settings {
+			.buttons {
+				.button {
+					.buttonColors(lighten(@darkmode-primary-font-color, 25%), @darkmode-secondary-background-color);
+				}
+			}
+
+			.input.checkbox.toggle {
+				input:checked + label::before {
+					background-color: @darkmode-primary-background-color;
+				}
+			}
+		}
+	}
+
+	.flex-tab-bar {
+		.tab-button {
+			&:hover {
+				background-color: @darkmode-secondary-background-color;
+			}
+
+			&.active {
+				border-right-color: @darkmode-selection-color;
+				background-color: @darkmode-secondary-background-color;
+			}
+		}
+
+		.counter {
+			color: #111111;
+			background: @darkmode-secondary-font-color;
+		}
+	}
+
+	/** ----------------------------------------------------------------------------
+	 * User status / user meta
+	 */
+	i.status-online {
+		color: @darkmode-status-online;
+	}
+
+	.status-bg-online {
+		background-color: @darkmode-status-online;
+	}
+
+	.account-box .status-online .thumb::after,
+	.account-box .status.online::after,
+	.popup-user-status-online,
+	.status-online::after,
+	.user-image.status-online .avatar::after {
+		border-color: darken(@darkmode-status-online, 10%);
+		background-color: @darkmode-status-online;
+	}
+
+	i.status-away {
+		color: @darkmode-status-away;
+	}
+
+	.status-bg-away {
+		background-color: @darkmode-status-away;
+	}
+
+	.account-box .status-away .thumb::after,
+	.account-box .status.away::after,
+	.popup-user-status-away,
+	.status-away::after,
+	.status-pending::after,
+	.user-image.status-away .avatar::after {
+		border-color: darken(@darkmode-status-away, 10%);
+		background-color: @darkmode-status-away;
+	}
+
+	i.status-busy {
+		color: @darkmode-status-busy;
+	}
+
+	.status-bg-busy {
+		background-color: @darkmode-status-busy;
+	}
+
+	.account-box .status-busy .thumb::after,
+	.account-box .status.busy::after,
+	.popup-user-status-busy,
+	.status-busy::after,
+	.user-image.status-busy .avatar::after {
+		border-color: darken(@darkmode-status-busy, 10%);
+		background-color: @darkmode-status-busy;
+	}
+
+	i.status-offline {
+		color: @darkmode-status-offline;
+	}
+
+	.status-bg-offline {
+		background-color: @darkmode-status-offline;
+	}
+
+	.popup-user-status-offline,
+	.status-offline::after,
+	.user-image.status-offline .avatar::after {
+		border-color: darken(@darkmode-status-offline, 10%);
+		background-color: @darkmode-status-offline;
+	}
+
+	/** ----------------------------------------------------------------------------
+	 * Buttons!
+	 */
+	.actionLinks li .action-link {
+		.buttonColors(@darkmode-primary-action-contrast, @darkmode-primary-action-color);
+	}
+
+	// new layout buttons
+
+	.button {
+		.buttonColors(@darkmode-default-action-contrast, @darkmode-default-action-color);
+
+		&.primary {
+			.buttonColors(@darkmode-primary-action-contrast, @darkmode-primary-action-color);
+
+			&[disabled] {
+				background-color: lighten(desaturate(@darkmode-primary-action-color, 50%), 30%);
+			}
+		}
+
+		&.secondary {
+			.buttonColors(@darkmode-secondary-action-contrast, @darkmode-secondary-action-color);
+
+			&[disabled] {
+				background-color: lighten(desaturate(@darkmode-secondary-action-color, 50%), 30%);
+			}
+		}
+
+		&.tertiary {
+			.buttonColors(@darkmode-primary-action-contrast, @darkmode-selection-color);
+
+			&[disabled] {
+				background-color: lighten(desaturate(@darkmode-selection-color, 50%), 30%);
+			}
+		}
+
+		&.danger {
+			.buttonColors(@darkmode-error-contrast, @darkmode-error-color);
+
+			&[disabled] {
+				background-color: lighten(desaturate(@darkmode-error-color, 50%), 30%);
+			}
+		}
+	}
+
+	/** ----------------------------------------------------------------------------
+	 * Feedback and overlay content
+	 */
+
+	.alert-warning {
+		color: darken(@darkmode-pending-color, 25%);
+		background-color: @darkmode-pending-background;
+	}
+
+	.alert-link {
+		color: @darkmode-link-font-color;
+
+		&:hover {
+			color: darken(@darkmode-link-font-color, 10%);
+		}
+	}
+
+	label.required::after {
+		color: @darkmode-error-color;
+	}
+
+	/** ----------------------------------------------------------------------------
+	 * Loading
+	 */
+
+	.main-content,
+	.flex-tab {
+		.loading-animation > .bounce {
+			background-color: @darkmode-primary-font-color;
+		}
+	}
+
+	.loading-animation.loading-animation--primary > .bounce {
+		background-color: @darkmode-primary-font-color;
+	}
+
+	@keyframes blink {
+		from {
+			color: @darkmode-selection-color;
+		}
+
+		to {
+			opacity: inherit;
+		}
+	}
+
+	/** ----------------------------------------------------------------------------
+	 * Input Range Slider
+	 */
+
+	.range-slider-range::-webkit-slider-thumb {
+		background-color: @darkmode-primary-background-color;
+	}
+
+	.range-slider-range::-webkit-slider-thumb:hover {
+		background-color: darken(@darkmode-success-color, 30%);
+	}
+
+	.range-slider-range:active::-webkit-slider-thumb {
+		background-color: darken(@darkmode-success-color, 10%);
+	}
+
+	.range-slider-range::-moz-range-thumb {
+		background-color: @darkmode-primary-background-color;
+	}
+
+	.range-slider-range::-moz-range-thumb:hover {
+		background-color: darken(@darkmode-success-color, 30%);
+	}
+
+	.range-slider-range:active::-moz-range-thumb {
+		background-color: darken(@darkmode-success-color, 10%);
+	}
+
+	.range-slider-value {
+		color: lighten(@darkmode-tertiary-background-color, 50%);
+		background-color: @darkmode-primary-background-color;
+	}
+
+	.range-slider-value::after {
+		border-right-color: @darkmode-primary-background-color;
+	}
+
+	.range-slider-range::-moz-range-track {
+		background-color: @darkmode-tertiary-background-color;
+	}
+
+	.announcement {
+		border-color: @darkmode-primary-action-color;
+		background-color: @darkmode-primary-background-color;
+
+		&.warning {
+			background-color: var(--rc-color-darkmode-alert);
+		}
+
+		&.error {
+			background-color: var(--rc-color-darkmode-alert-message-warning);
+		}
+	}
+}
