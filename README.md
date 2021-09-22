@@ -1,125 +1,72 @@
-## Thoughts While Working (for docs)
-- Apps which don't provide a valid uuid4 id will be assigned one, but this is not recommended and your App should provide an id
-- The language strings are only done on the clients (`TAPi18next.addResourceBundle(lang, projectName, translations);`)
-- The implementer of this should restrict the server setting access and environmental variables. Idea is to allow the implementer to have a default set of restricted ones while letting the admin/owner of the server to restrict it even further or lift the restriction on some more. Simple interface with settings and checkbox to allow/disallow them. :thinking:
+<img src="https://github.com/RocketChat/Rocket.Chat.Artwork/raw/master/Logos/2020/png/logo-horizontal-red.png" data-canonical-src="https://github.com/RocketChat/Rocket.Chat.Artwork/raw/master/Logos/2020/png/logo-horizontal-red.png" width="500" />
 
-## What does the Apps-Engine enable you to do?
-The Apps-Engine is Rocket.Chat's _plugin framework_ - it provides the APIs for Rocket.Chat Apps to interact with the host system.
+[Rocket.Chat](https://rocket.chat) is an open-source fully customizable communications platform developed in JavaScript for organizations with high standards of data protection.
 
-Currently, a Rocket.Chat App can:
-- Listen to message events
-  - before/after sent
-  - before/after updated
-  - before/after deleted
-- Listen to room events
-  - before/after created
-  - before/after deleted
-- Send messages to users and livechat visitors
-- Register new slash commands
-- Register new HTTP endpoints
+We are a MERN based application enabling real-time conversations between colleagues, with other companies or with your customers, regardless of how they connect with you. The result is an increase in productivity and customer satisfaction rates.
 
-Some features the Engine allows Apps to use:
-- Key-Value Storage system
-- App specific settings
+Every day, tens of millions of users in over 150 countries and in organizations such as Deutsche Bahn, The US Navy, and Credit Suisse trust [Rocket.Chat](https://rocket.chat) to keep their communications completely private and secure.
 
-## Development environment with Rocket.Chat
-When developing new functionalities, you need to integrate the local version of the Apps-Engine with your local version of Rocket.Chat.
+ * [Review product documentation](https://docs.rocket.chat/)
+ * [Review developer documentation](https://developer.rocket.chat/)
+ 
+Using our self-managed offerings you can deploy Rocket.Chat on your own server, or you can use SaaS Rocket.Chat. We offer support for both community as well as commercial plans.
+ 
+<img src="https://github.com/RocketChat/Rocket.Chat.Artwork/blob/master/Product%20Images/Welcome%20to%20RC%20(Readme).jpg" data-canonical-src="https://github.com/RocketChat/Rocket.Chat.Artwork/blob/master/Product%20Images/Welcome%20to%20RC%20(Readme).jpg" width="919" height="511" />
 
-First of all, make sure you've installed all required packages and compiled the changes you've made to the Apps-Engine, since that is what Rocket.Chat will execute:
-```sh
-npm install
-npm run compile
-```
 
-Now, you need to setup a local Rocket.Chat server, [so head to the project's README for instructions on getting started](https://github.com/RocketChat/Rocket.Chat#development) (if you haven't already). Make sure to actually clone the repo, since you will probably need to add some code to it in order to make your new functionality work.
+## Cloud Hosted Rocket.Chat
 
-After that, `cd` into Rocket.Chat folder and run:
-```sh
-meteor npm install PATH_TO_APPS_ENGINE
-```
+https://cloud.rocket.chat/trial
 
-Where `PATH_TO_APPS_ENGINE` is the path to the Apps-Engine repo you've cloned.
 
-That's it! Now when you start Rocket.Chat with the `meteor` command, it will use your local Apps-Engine instead of the one on NPM :)
+## Installation
+Please see the [requirements documentation](https://docs.rocket.chat/installing-and-updating/minimum-requirements-for-using-rocket.chat) for system requirements and more information about supported operating systems.
+Please refer to [Install Rocket.Chat](https://rocket.chat/install/) to install your Rocket.Chat instance.
 
-Whenever you make changes to the engine, run `npm run compile` again - meteor will take care of restarting the server due to the changes.
 
-## Troubleshooting
-1. Sometimes, when you update the Apps-Engine code and compile it while Rocket.Chat is running, you might run on errors similar to these:
+## Feature Request 
 
-```
-Unable to resolve some modules:
+[Rocket.Chat/feature-requests](https://github.com/RocketChat/feature-requests) is used to track Rocket.Chat feature requests and discussions. Click [here](https://github.com/RocketChat/feature-requests/issues/new?template=feature_request.md) to open a new feature request. [Feature Request Forums](https://forums.rocket.chat/c/feature-requests/8) stores the historical archives of old feature requests (up to 2018).
 
-  "@rocket.chat/apps-engine/definition/AppStatus" in
-/Users/dev/rocket.chat/Rocket.Chat/app/apps/client/admin/helpers.js (web.browser)
+## Community
 
-If you notice problems related to these missing modules, consider running:
+Join thousands of members worldwide in our [community server](https://open.rocket.chat/).
+Join [#Support](https://open.rocket.chat/channel/support) for help from our community with general Rocket.Chat questions.
+Join [#Dev](https://open.rocket.chat/channel/dev) for needing help from the community to develop new features.
 
-  meteor npm install --save @rocket.chat/apps-engine
-```
+## Contributions
 
-Simply restart the meteor process and it should be fixed.
+Rocket.Chat is an open source project and we are very happy to accept community contributions. Please refer to the [How can I help?](https://docs.rocket.chat/contributors/how-can-i-help) for more details.
 
-2. Sometimes when using `meteor npm install PATH_TO_APPS_ENGINE` will cause the following error :-
+## Credits
 
-```
-npm ERR! code ENOENT
-npm ERR! syscall rename
-npm ERR! path PATH_TO_ROCKETCHAT/node_modules/.staging/@rocket.chat/apps-engine-c7135600/node_modules/@babel/code-frame
-npm ERR! dest PATH_TO_ROCKETCHAT/node_modules/.staging/@babel/code-frame-f3697825
-npm ERR! errno -2
-npm ERR! enoent ENOENT: no such file or directory, rename 'PATH_TO_ROCKETCHAT/node_modules/.staging/@rocket.chat/apps-engine-c7135600/node_modules/@babel/code-frame' -> 'PATH_TO_ROCKETCHAT/node_modules/.staging/@babel/code-frame-f3697825'
-npm ERR! enoent This is related to npm not being able to find a file.
-npm ERR! enoent 
-```
-Here `PATH_TO_ROCKETCHAT` is the path to the main rocketchat server repo in your system
-To correct this we reinstall the package once again deleting the previous package
-```
-~/Rocket.Chat$ rm -rf node_modules/@rocket.chat/apps-engine
-~/Rocket.Chat$ cd PATH_TO_APP_ENGINE
-~/Rocket.Chat.Apps-engine$ npm install
-~/Rocket.Chat.Apps-engine$ cd PATH_TO_ROCKETCHAT
-~/Rocket.Chat$ meteor npm install ../Rocket.Chat.Apps-engine
-```
+* Emoji provided graciously by [JoyPixels](https://www.joypixels.com/)
+* Testing with [BrowserStack](https://www.browserstack.com/)
+* Translations done with [LingoHub](https://lingohub.com/)
 
-## Implementer Needs to Implement:
-- `src/server/storage/AppStorage`
-- `src/server/storage/AppLogStorage`
-- `src/server/bridges/*`
 
-## Testing Framework:
-Makes great usage of TypeScript and decorators: https://github.com/alsatian-test/alsatian/wiki
-* To run the tests do: `npm run unit-tests`
-* To generate the coverage information: `npm run check-coverage`
-* To view the coverage: `npm run view-coverage`
+## Mobile Apps
 
-# Rocket.Chat Apps TypeScript Definitions
+In addition to the web interface, you can also download Rocket.Chat clients for:
 
-## Handlers
-Handlers are essentially "listeners" for different events, except there are various ways to handle an event.
-When something happens there is `pre` and `post` handlers.
-The set of `pre` handlers happens before the event is finalized.
-The set of `post` handlers happens after the event is finalized.
-With that said, the rule of thumb is that if you are going to modify, extend, or change the data backing the event then that should be done in the `pre` handlers. If you are simply wanting to listen for when something happens and not modify anything, then the `post` is the way to go.
+[![Rocket.Chat on Apple App Store](https://user-images.githubusercontent.com/551004/29770691-a2082ff4-8bc6-11e7-89a6-964cd405ea8e.png)](https://itunes.apple.com/us/app/rocket-chat/id1148741252?mt=8) [![Rocket.Chat on Google Play](https://user-images.githubusercontent.com/551004/29770692-a20975c6-8bc6-11e7-8ab0-1cde275496e0.png)](https://play.google.com/store/apps/details?id=chat.rocket.android)  [![](https://user-images.githubusercontent.com/551004/48210349-50649480-e35e-11e8-97d9-74a4331faf3a.png)](https://f-droid.org/en/packages/chat.rocket.android/)
 
-The order in which they happen is:
-* Pre**Event**Prevent
-* Pre**Event**Extend
-* Pre**Event**Modify
-* Post**Event**
+## Learn More
+* [API](https://developer.rocket.chat/)
+* [See who's using Rocket.Chat](https://rocket.chat/customer-stories/)
 
-Here is an explanation of what each of them means:
-* **Prevent**: This is ran to determine whether the event should be prevented or not.
-* **Extend**: This is ran to allow extending the data without being destructive of the data (adding an attachment to a message for example).
-* **Modify**: This is ran and allows for destructive changes to the data (change any and everything).
-* Post**Event**: Is mostly for simple listening and no changes can be made to the data.
+## Become a Rocketeer
+We're hiring developers, support people, and product managers all the time. Please check our [jobs page](https://rocket.chat/jobs/).
 
-## Generating/Updating Documentation
-To update or generate the documentation, please commit your changes first and then in a second commit provide the updated documentation.
+## Get the Latest News
 
-# Engage with us
-## Share your story
-We’d love to hear about [your experience](https://survey.zohopublic.com/zs/e4BUFG) and potentially feature it on our [Blog](https://rocket.chat/case-studies/?utm_source=github&utm_medium=readme&utm_campaign=community).
+* [Twitter](https://twitter.com/RocketChat)
+* [Blog](https://rocket.chat/blog/)
+* [Facebook](https://www.facebook.com/RocketChatApp/)
+* [LinkedIn](https://www.linkedin.com/company/rocket-chat/)
+* [Youtube](https://www.youtube.com/channel/UCin9nv7mUjoqrRiwrzS5UVQ)
+* [Email Newsletter](https://rocket.chat/newsletter/)
 
-## Subscribe for Updates
-Once a month our marketing team releases an email update with news about product releases, company related topics, events and use cases. [Sign Up!](https://rocket.chat/newsletter/?utm_source=github&utm_medium=readme&utm_campaign=community)
+Any other questions, reach out to us at [contact@rocket.chat](contact@rocket.chat). We’d happy to help!
+
+
