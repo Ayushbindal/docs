@@ -1,0 +1,1 @@
+export { ChatPermissions } from '../../../models';
