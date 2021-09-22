@@ -1,0 +1,216 @@
+<template name="pushNotificationsFlexTab">
+	<div class="list-view push-notifications">
+		<div class="title">
+			<h2>{{_ "Notifications"}}</h2>
+		</div>
+		<form>
+			<ul class="list clearfix">
+				<li class="disable-notifications">
+					<label>{{_ "Disable_Notifications"}}</label>
+					<div class="input checkbox toggle">
+						<input type="checkbox" id="disableNotifications" name="disableNotifications" value="1" checked="{{$eq disableNotifications true}}" />
+						<label for="disableNotifications"></label>
+					</div>
+				</li>
+				{{#if $neq disableNotifications true}}
+					<li class="snooze-notifications">
+						<label>{{_ "Snooze_Notifications_Label"}}</label>
+						<div class="input checkbox toggle">
+							<input type="checkbox" id="snoozeNotifications" name="snoozeNotifications" value="1" checked="{{snoozeNotificationsIsValid}}" />
+							<label for="snoozeNotifications"></label>
+						</div>
+						{{#if snoozeNotificationsIsValid }}
+							<li class="snooze-notifications-time-period">
+								<div>
+									{{#if editing 'snoozeNotifications'}}
+										<label><input type="radio" name="snoozeNotificationsOptions" value="20" checked="{{$eq snoozeNotifications.duration 20}}"/> {{_ "Snooze_Notifications_20_Minutes_Option"}}</label>
+										<label><input type="radio" name="snoozeNotificationsOptions" value="60" checked="{{$eq snoozeNotifications.duration 60}}"/> {{_ "Snooze_Notifications_1_Hour_Option"}}</label>
+										<label><input type="radio" name="snoozeNotificationsOptions" value="120" checked="{{$eq snoozeNotifications.duration 120}}"/> {{_ "Snooze_Notifications_2_Hours_Option"}}</label>
+										<label><input type="radio" name="snoozeNotificationsOptions" value="240" checked="{{$eq snoozeNotifications.duration 240}}"/> {{_ "Snooze_Notifications_4_Hours_Option"}}</label>
+										<label><input type="radio" name="snoozeNotificationsOptions" value="480" checked="{{$eq snoozeNotifications.duration 480}}"/> {{_ "Snooze_Notifications_8_Hours_Option"}}</label>
+										<label><input type="radio" name="snoozeNotificationsOptions" value="1440" checked="{{$eq snoozeNotifications.duration 1440}}"/> {{_ "Snooze_Notifications_24_Hours_Option"}}</label>
+
+										<button type="button" class="button cancel">{{_ "Cancel"}}</button>
+										<button type="button" class="button primary save">{{_ "Save"}}</button>
+									{{else}}
+										{{#if snoozeNotifications.duration}}
+											<span class="current-setting">{{snoozeNotificationsInfo.description}} - {{_ "Snooze_Notifications_Final_Time_Label"}} {{snoozeNotificationsInfo.to}}<i class="icon-pencil" data-edit="snoozeNotifications"></i></span>
+										{{/if}}
+									{{/if}}
+								</div>
+							</li>
+						{{/if}}
+					</li>
+
+					<li class="do-not-disturb">
+						<label>{{_ "Do_Not_Disturb_Label"}}</label>
+						<div class="input checkbox toggle">
+							<input type="checkbox" id="doNotDisturb" name="doNotDisturb" value="1" checked="{{doNotDisturbIsValid}}" />
+							<label for="doNotDisturb"></label>
+						</div>
+						{{#if doNotDisturbIsValid}}
+							<li class="do-not-disturb">
+								<div>
+									{{#if editing 'doNotDisturb'}}
+										<section id="do-not-disturb-initial-period-select">
+											<label>{{_ "Do_Not_Disturb_Initial_Time_Label"}}</label>
+											<label>
+												<select name="doNotDisturbInitialTime">
+													{{#each selectHoursOptions}}
+														<option value="{{this}}" selected="{{$eq this doNotDisturb.initialTime}}">{{this}}</option>
+													{{/each}}
+												</select>
+											</label>
+
+											<label>{{_ "Do_Not_Disturb_Final_Time_Label"}}</label>
+											<label>
+												<select name="doNotDisturbFinalTime">
+													{{#each selectHoursOptions}}
+														<option value="{{this}}" selected="{{$eq this doNotDisturb.finalTime}}">{{this}}</option>
+													{{/each}}
+												</select>
+											</label>
+
+											<label>{{_ "Do_Not_Disturb_Repeat_For_Label"}}</label>
+											<label>
+												<select name="doNotDisturbRepeatFor">
+													<option value="1 day" selected="{{$eq doNotDisturb.repeatFor '1 day'}}">{{_ "Do_Not_Disturb_Repeat_For_1_Day_Option"}}</option>
+													<option value="1 week" selected="{{$eq doNotDisturb.repeatFor '1 week'}}">{{_ "Do_Not_Disturb_Repeat_For_1_Week_Option"}}</option>
+													<option value="1 month" selected="{{$eq doNotDisturb.repeatFor '1 month'}}">{{_ "Do_Not_Disturb_Repeat_For_1_Month_Option"}}</option>
+													<option value="1 year" selected="{{$eq doNotDisturb.repeatFor '1 year'}}">{{_ "Do_Not_Disturb_Repeat_For_1_Year_Option"}}</option>
+													<option value="every day" selected="{{$eq doNotDisturb.repeatFor 'every day'}}">{{_ "Do_Not_Disturb_Repeat_For_Every_Day_Option"}}</option>
+												</select>
+											</label>
+										</section>
+
+										<button type="button" class="button cancel">{{_ "Cancel"}}</button>
+										<button type="button" class="button primary save">{{_ "Save"}}</button>
+									{{else}}
+										<span class="current-setting">{{_ "Do_Not_Disturb_Initial_Time_Label"}} {{doNotDisturbInfo.initialTime}} {{_ "Do_Not_Disturb_Final_Time_Label"}} {{doNotDisturbInfo.finalTime}} ({{doNotDisturbInfo.repeatFor}}{{#if doNotDisturbInfo.limitDateTime}} - {{_ "Do_Not_Disturb_Repeat_For_Limit_Date_Label"}} {{doNotDisturbInfo.limitDateTime}}{{/if}}) <i class="icon-pencil" data-edit="doNotDisturb"></i></span>
+									{{/if}}
+								</div>
+							</li>
+						{{/if}}
+					</li>
+
+					<li class="audio-notifications">
+						<label>{{_ "Audio"}}</label>
+						<div>
+							{{#if editing 'audioNotifications'}}
+								<label><input type="radio" name="audioNotifications" value="default" checked="{{$eq audioNotifications 'default'}}" /> {{_ "Default"}} ({{_ defaultAudioNotification}})</label>
+								<label><input type="radio" name="audioNotifications" value="all" checked="{{$eq audioNotifications 'all'}}" /> {{_ "All_messages"}}</label>
+								<label><input type="radio" name="audioNotifications" value="mentions" checked="{{$eq audioNotifications 'mentions'}}" /> {{_ "Mentions"}}</label>
+								<br />
+
+								<label>
+									<select name="audioNotificationValue" class="audio">
+										<option value="none" selected="{{$eq audioNotificationValue 'none'}}">{{_ "None"}}</option>
+										<option value="" selected="{{$eq audioNotificationValue subValue 'audioNotifications'}}">{{_ "Use_account_preference"}} ({{_ "Default"}})</option>
+										<option value="chime" selected="{{$eq audioNotificationValue 'chime'}}">Chime</option>
+										{{#each audioAssets}}
+											<option value="{{_id}}" selected="{{$eq audioNotificationValue _id}}">{{name}}</option>
+										{{/each}}
+									</select>
+								</label>
+								<button type="button" class="button cancel">{{_ "Cancel"}}</button>
+								<button type="button" class="button primary save">{{_ "Save"}}</button>
+							{{else}}
+								<span class="current-setting">{{subValue 'audioNotifications'}} : {{audioNotificationValue}}<i class="icon-play-circled" data-play="{{audioNotificationValue}}"></i> <i class="icon-pencil" data-edit="audioNotifications"></i></span>
+							{{/if}}
+						</div>
+					</li>
+					<li class="desktop-notifications">
+						<label>{{_ "Desktop"}}</label>
+						<div>
+							{{#if editing 'desktopNotifications'}}
+								<label><input type="radio" name="desktopNotifications" value="default" checked="{{$eq desktopNotifications 'default'}}" /> {{_ "Default"}} ({{_ defaultDesktopNotification}})</label>
+								<label><input type="radio" name="desktopNotifications" value="all" checked="{{$eq desktopNotifications 'all'}}" /> {{_ "All_messages"}}</label>
+								<label><input type="radio" name="desktopNotifications" value="mentions" checked="{{$eq desktopNotifications 'mentions'}}" /> {{_ "Mentions"}}</label>
+								<label><input type="radio" name="desktopNotifications" value="nothing" checked="{{$eq desktopNotifications 'nothing'}}" /> {{_ "Nothing"}}</label>
+								<br />
+								{{#if desktopNotificationDuration}}
+									<label>{{_ "Duration"}} ({{_ "seconds"}}) <input type="number" name="duration" min="0" value="{{desktopNotificationDuration}}" class="content-background-color"></label>
+								{{else}}
+									<label>{{_ "Duration"}} ({{_ "seconds"}}) <input type="number" name="duration" min="0" value="" placeholder="{{_ "Use_User_Preferences_or_Global_Settings"}}"></label>
+								{{/if}}
+
+								<button type="button" class="button cancel">{{_ "Cancel"}}</button>
+								<button type="button" class="button primary save">{{_ "Save"}}</button>
+							{{else}}
+								<span class="current-setting">{{subValue 'desktopNotifications'}} <i class="icon-pencil" data-edit="desktopNotifications"></i></span>
+							{{/if}}
+						</div>
+					</li>
+					{{#unless editing 'desktopNotifications'}}
+					<li class="desktop-notifications-duration">
+						<label>{{_ "Desktop_Notifications_Duration"}}</label>
+						<div>
+							<span class="current-setting">{{#if desktopNotificationDuration}}{{desktopNotificationDuration}} {{_ "seconds"}}{{else}}{{_ "Use_User_Preferences_or_Global_Settings"}}{{/if}}</span>
+						</div>
+					</li>
+					{{/unless}}
+					<li class="mobile-notifications">
+						<label>{{_ "Mobile"}}</label>
+						<div>
+							{{#if editing 'mobilePushNotifications'}}
+								<label><input type="radio" name="mobilePushNotifications" value="default" checked="{{$eq mobilePushNotifications 'default'}}" /> {{_ "Default"}} ({{_ defaultMobileNotification}})</label>
+								<label><input type="radio" name="mobilePushNotifications" value="all" checked="{{$eq mobilePushNotifications 'all'}}" /> {{_ "All_messages"}}</label>
+								<label><input type="radio" name="mobilePushNotifications" value="mentions" checked="{{$eq mobilePushNotifications 'mentions'}}" /> {{_ "Mentions"}}</label>
+								<label><input type="radio" name="mobilePushNotifications" value="nothing" checked="{{$eq mobilePushNotifications 'nothing'}}" /> {{_ "Nothing"}}</label>
+								<button type="button" class="button cancel">{{_ "Cancel"}}</button>
+								<button type="button" class="button primary save">{{_ "Save"}}</button>
+							{{else}}
+								<span class="current-setting">{{subValue 'mobilePushNotifications'}} <i class="icon-pencil" data-edit="mobilePushNotifications"></i></span>
+							{{/if}}
+						</div>
+					</li>
+					<li class="email-notifications">
+						<label>{{_ "Email"}}</label>
+						<div>
+							{{#if editing 'emailNotifications'}}
+								<label><input type="radio" name="emailNotifications" value="all" checked="{{$eq emailNotifications 'all'}}" /> {{_ "All_messages"}}</label>
+								{{#if showEmailMentions}}
+									<label><input type="radio" name="emailNotifications" value="mentions" checked="{{$eq emailNotifications 'mentions'}}" /> {{_ "Mentions"}}</label>
+								{{/if}}
+								<label><input type="radio" name="emailNotifications" value="nothing" checked="{{$eq emailNotifications 'nothing'}}" /> {{_ "Nothing"}}</label>
+								<label><input type="radio" name="emailNotifications" value="default" checked="{{$eq emailNotifications 'default'}}" /> {{_ "Use_account_preference"}}</label>
+								<button type="button" class="button cancel">{{_ "Cancel"}}</button>
+								<button type="button" class="button primary save">{{_ "Save"}}</button>
+							{{else}}
+								<span class="current-setting">{{subValue 'emailNotifications'}} <i class="icon-pencil" data-edit="emailNotifications"></i></span>
+							{{/if}}
+						</div>
+					</li>
+					{{#unless emailVerified}}
+					<li class="email-alerts">
+						<div class="alert alert-warning pending-background pending-border">
+							{{_ "You_wont_receive_email_notifications_because_you_have_not_verified_your_email"}}
+						</div>
+					</li>
+					{{/unless}}
+				{{/if}}
+				<li class="unread-room-status">
+					<label>{{_ "Hide_Unread_Room_Status"}}</label>
+					<div class="input checkbox toggle">
+						<input type="checkbox" id="hideUnreadStatus" name="hideUnreadStatus" value="1" checked="{{$eq hideUnreadStatus true}}" />
+						<label for="hideUnreadStatus"></label>
+					</div>
+				</li>
+				<li class="unread-alerts">
+					<label>{{_ "Unread_Tray_Icon_Alert"}}</label>
+					<div>
+						{{#if editing 'unreadAlert'}}
+							<label><input type="radio" name="unreadAlert" value="all" checked="{{$eq unreadAlert 'all'}}" /> {{_ "On"}}</label>
+							<label><input type="radio" name="unreadAlert" value="nothing" checked="{{$eq unreadAlert 'nothing'}}" /> {{_ "Off"}}</label>
+							<label><input type="radio" name="unreadAlert" value="default" checked="{{$eq unreadAlert 'default'}}" /> {{_ "Use_account_preference"}}</label>
+							<button type="button" class="button cancel">{{_ "Cancel"}}</button>
+							<button type="button" class="button primary save">{{_ "Save"}}</button>
+						{{else}}
+							<span class="current-setting">{{unreadAlertText}} <i class="icon-pencil" data-edit="unreadAlert"></i></span>
+						{{/if}}
+					</div>
+				</li>
+			</ul>
+		</form>
+	</div>
+</template>
