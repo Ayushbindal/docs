@@ -1,0 +1,29 @@
+{
+	"extends": ["@rocket.chat/eslint-config"],
+	"parser": "babel-eslint",
+	"globals": {
+		"__meteor_runtime_config__"   : false,
+		"AccountBox"                  : false,
+		"Apps"                        : false,
+		"Assets"                      : false,
+		"browser"                     : false,
+		"ChatMessage"                 : false,
+		"ChatMessages"                : false,
+		"ChatRoom"                    : false,
+		"ChatSubscription"            : false,
+		"FileUpload"                  : false,
+		"handleError"                 : false,
+		"getAvatarUrlFromUsername"    : false,
+		"Logger"                      : false,
+		"modal"                       : false,
+		"Npm"                         : false,
+		"Package"                     : false,
+		"RocketChat"                  : true,
+		"RoomHistoryManager"          : false,
+		"RoomManager"                 : false,
+		"SideNav"                     : false,
+		"t"                           : false,
+		"VideoRecorder"               : false,
+		"VRecDialog"                  : false
+	}
+}
