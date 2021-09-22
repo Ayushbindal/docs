@@ -1,0 +1,6 @@
+import './license.internalService';
+import './settings';
+import './methods';
+import './startup';
+
+export { onLicense, overwriteClassOnLicense, isEnterprise, getMaxGuestUsers } from './license';
