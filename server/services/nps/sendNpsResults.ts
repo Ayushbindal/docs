@@ -1,0 +1,33 @@
+import { HTTP } from 'meteor/http';
+import { Meteor } from 'meteor/meteor';
+
+import { settings } from '../../settings';
+import { getWorkspaceAccessToken } from '../cloud';
+import { INpsVote } from '../../../definition/INps';
+
+type NPSResultPayload = {
+	total: number;
+	votes: INpsVote[];
+}
+
+export const sendNpsResults = Meteor.bindEnvironment(function sendNpsResults(npsId: string, data: NPSResultPayload) {
+	// @ts-expect-error
+	const token: string = getWorkspaceAccessToken();
+	if (!token) {
+		return false;
+	}
+
+	const npsUrl = settings.get('Nps_Url');
+
+	try {
+		return HTTP.post(`${ npsUrl }/v1/surveys/${ npsId }/results`, {
+			headers: {
+				Authorization: `Bearer ${ token }`,
+			},
+			data,
+		});
+	} catch (e) {
+		console.error(e);
+		return false;
+	}
+});
