@@ -1,0 +1,35 @@
+.rc-apps-marketplace {
+	.rc-table-content .rc-table {
+		.rc-table-tr .rc-apps-section__app-menu-trigger {
+			visibility: hidden;
+		}
+
+		.rc-table-tr:hover .rc-apps-section__app-menu-trigger {
+			visibility: visible;
+		}
+
+		.rc-table-td--small:last-child {
+			width: 150px;
+		}
+	}
+
+	&__table-button.rc-button {
+		color: var(--rc-color-primary-light);
+
+		line-height: 40px;
+		justify-content: flex-start;
+
+		&.loading {
+			opacity: 0.6;
+			background: transparent;
+
+			&::before {
+				display: none;
+			}
+
+			& > .rc-icon {
+				animation: spin 1s linear infinite;
+			}
+		}
+	}
+}
